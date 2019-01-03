@@ -24,14 +24,14 @@ class MotorStorage:
 
     async def create_user(self, data):
         data.setdefault('created_at', datetime.utcnow())
-        data['_id'] = await self.users.insert(data)
+        data['_id'] = await self.users.insert_one(data)
         return data
 
-    def update_user(self, user, updates):
-        return self.users.update({'_id': user['_id']}, {'$set': updates})
+    async def update_user(self, user, updates):
+        return await self.users.update_one({'_id': user['_id']}, {'$set': updates})
 
-    def delete_user(self, user):
-        return self.users.remove({'_id': user['_id']})
+    async def delete_user(self, user):
+        return await self.users.delete_one({'_id': user['_id']})
 
     async def create_confirmation(self, user, action, data=None):
         while True:

@@ -4,5 +4,5 @@ pytest
 pytest-aiohttp
 jinja_app_loader
 asyncpg
-motor
+motor >= 2.0, < 3.0
 pyandoc
