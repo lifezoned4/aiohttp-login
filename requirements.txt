@@ -4,3 +4,4 @@ aiohttp_session[secure]
 wtforms
 passlib
 aiosmtplib
+motor >= 2.0, < 3.0
