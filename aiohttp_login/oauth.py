@@ -95,7 +95,9 @@ async def google(request):
         params.update({
             'response_type': 'code',
             'scope': ('https://www.googleapis.com/auth/userinfo.profile'
-                      ' https://www.googleapis.com/auth/userinfo.email'),
+                      ' https://www.googleapis.com/auth/userinfo.email'
+                      ' https://www.googleapis.com/auth/spreadsheets'
+                      ' https://www.googleapis.com/auth/drive.readonly'),
         })
         if cfg.BACK_URL_QS_KEY in request.query:
             params['state'] = request.query[cfg.BACK_URL_QS_KEY]
@@ -139,6 +141,7 @@ async def google(request):
     return {
         'user_id': profile['id'],
         'email': email,
+        'access_token': data['access_token'],
         'name': name,
         'back_to': request.query.get('state'),
     }

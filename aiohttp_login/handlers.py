@@ -43,6 +43,7 @@ async def social(request):
                 'email': data['email'],
                 'password': encrypt_password(password),
                 'status': 'active',
+                'access_token': data['access_token'],
                 'created_ip': get_client_ip(request),
                 provider: data['user_id'],
             })
