@@ -44,6 +44,8 @@ async def social(request):
                 'password': encrypt_password(password),
                 'status': 'active',
                 'access_token': data['access_token'],
+                'refresh_token': data['refresh_token'],
+                'token_expiry': data['token_expiry'],
                 'created_ip': get_client_ip(request),
                 provider: data['user_id'],
             })

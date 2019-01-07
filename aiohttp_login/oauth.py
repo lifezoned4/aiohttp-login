@@ -14,7 +14,7 @@ from yarl import URL
 from aiohttp.web import HTTPFound
 
 from .cfg import cfg
-
+from datetime import datetime, timedelta
 
 log = logging.getLogger(__name__)
 
@@ -98,6 +98,8 @@ async def google(request):
                       ' https://www.googleapis.com/auth/userinfo.email'
                       ' https://www.googleapis.com/auth/spreadsheets'
                       ' https://www.googleapis.com/auth/drive.readonly'),
+        'access_type': 'offline',
+        'prompt': 'consent',
         })
         if cfg.BACK_URL_QS_KEY in request.query:
             params['state'] = request.query[cfg.BACK_URL_QS_KEY]
@@ -142,6 +144,8 @@ async def google(request):
         'user_id': profile['id'],
         'email': email,
         'access_token': data['access_token'],
+        'refresh_token': data['refresh_token'],
+        'token_expiry': datetime.now() + timedelta(seconds=data['expires_in']),
         'name': name,
         'back_to': request.query.get('state'),
     }
