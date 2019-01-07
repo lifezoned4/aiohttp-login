@@ -24,7 +24,7 @@ class MotorStorage:
 
     async def create_user(self, data):
         data.setdefault('created_at', datetime.utcnow())
-        data['_id'] = await self.users.insert_one(data)
+        data['id'] = await self.users.insert_one(data)
         return data
 
     async def update_user(self, user, updates):
