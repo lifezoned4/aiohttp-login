@@ -98,8 +98,8 @@ async def google(request):
                       ' https://www.googleapis.com/auth/userinfo.email'
                       ' https://www.googleapis.com/auth/spreadsheets'
                       ' https://www.googleapis.com/auth/drive.readonly'),
-        'access_type': 'offline',
-        'prompt': 'consent',
+            'access_type': 'offline',
+            'prompt': 'consent',
         })
         if cfg.BACK_URL_QS_KEY in request.query:
             params['state'] = request.query[cfg.BACK_URL_QS_KEY]

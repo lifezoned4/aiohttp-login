@@ -28,7 +28,8 @@ class MotorStorage:
         return data
 
     async def update_user(self, user, updates):
-        return await self.users.update_one({'_id': user['_id']}, {'$set': updates})
+        return await self.users.update_one({'_id': user['_id']},
+                                           {'$set': updates})
 
     async def delete_user(self, user):
         return await self.users.delete_one({'_id': user['_id']})
